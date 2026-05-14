@@ -15,7 +15,7 @@ class Server {
   }
 
   rutas () {
-    this.app.use('/servicios', require('../routes/servicios'))
+    this.app.use('/servicios', require('../routes/serviciosRoutes'))
 
     // manejo de errores
     this.app.use((req, res, next) => {
@@ -23,7 +23,6 @@ class Server {
     })
     this.app.use((err, req, res, next) => {
       console.error(err.stack)
-      next()
       return res.status(404).json({ msg: 'Error. Pagina no encontrada' })
     })
     this.app.use((err, req, res, next) => {

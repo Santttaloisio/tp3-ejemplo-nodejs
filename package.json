@@ -1,20 +1,27 @@
 {
-  "name": "ejemplo-tp-3-archivos",
+  "name": "tp3",
   "version": "1.0.0",
+  "description": "grupo0",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "lint": "npx standard",
+    "fix": "npx standard --fix",
+    "prepare": "husky"
   },
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "eslint": "^10.3.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "nodemon": "^3.1.14",
+    "standard": "^17.1.2"
   }
 }
