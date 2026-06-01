@@ -96,9 +96,9 @@ export const getAlumnoAll = async (req: Request, res: Response) => {
     return res.status(200).json(resultado)
   } catch (error) {
     console.log(error)
-    return res.status(500).json({
-      error: 'No se pudieron obtener los datos de los alumnos'
-    })
+    return res
+      .status(500)
+      .json({ error: 'No se pudieron obtener los datos de los alumnos' })
   }
 }
 
@@ -110,9 +110,9 @@ export const getAlumnoById = async (req: Request, res: Response) => {
     const index = buscarIndexPorLegajo(alumnos, legajo)
 
     if (index === -1) {
-      return res.status(404).json({
-        msg: `No existe el alumno con el legajo n° ${legajo}`
-      })
+      return res
+        .status(404)
+        .json({ msg: `No existe el alumno con el legajo n° ${legajo}` })
     }
 
     return res.status(200).json(alumnos[index])
@@ -138,7 +138,6 @@ export const postNewAlumno = async (req: Request, res: Response) => {
     }
 
     const nuevoLegajo = generarNuevoLegajo(alumnos)
-
     const nuevoAlumno = new AlumnoModel(
       nombre.trim(),
       apellido.trim(),
@@ -159,6 +158,104 @@ export const postNewAlumno = async (req: Request, res: Response) => {
     console.log(error)
     return res.status(500).json({
       error: 'No se pudo dar de alta el alumno'
+    })
+  }
+}
+
+export const putAlumnoBylegajo = async (req: Request, res: Response) => {
+  const legajo = obtenerParametro(req.params.legajo)
+
+  try {
+    const { nombre, apellido, email, isActive } = req.body
+    const alumnos = await leerAlumnos()
+    const index = buscarIndexPorLegajo(alumnos, legajo)
+
+    if (index === -1) {
+      return res.status(404).json({
+        msg: `No se encontró el alumno con el legajo n° ${legajo}`
+      })
+    }
+
+    if (email !== undefined) {
+      const indexEmail = buscarIndexPorEmail(alumnos, email)
+
+      if (indexEmail !== -1 && indexEmail !== index) {
+        return res.status(409).json({
+          msg: `Ya existe otro alumno registrado con el email ${email}`
+        })
+      }
+    }
+
+    const alumnoEncontrado = alumnos[index]
+    const alumnoModificado = new AlumnoModel(
+      alumnoEncontrado.nombre,
+      alumnoEncontrado.apellido,
+      alumnoEncontrado.email,
+      alumnoEncontrado.legajo,
+      alumnoEncontrado.fechaAlta,
+      alumnoEncontrado.modificacion,
+      alumnoEncontrado.isActive
+    )
+
+    if (nombre !== undefined) {
+      alumnoModificado.setNombre(nombre.trim())
+    }
+
+    if (apellido !== undefined) {
+      alumnoModificado.setApellido(apellido.trim())
+    }
+
+    if (email !== undefined) {
+      alumnoModificado.setEmail(email.trim())
+    }
+
+    if (isActive !== undefined) {
+      alumnoModificado.setIsActive(isActive)
+    }
+
+    alumnoModificado.setModificacion(AlumnoModel.getFechaActual())
+    alumnos[index] = alumnoModificado.getAllAttributes()
+
+    await escribirAlumnos(alumnos)
+
+    return res.status(200).json({
+      msg: `Se modificó correctamente el alumno con legajo n° ${legajo}`,
+      alumnoModificado: alumnos[index]
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      error: `No se pudieron modificar los datos del alumno con legajo n° ${legajo}`
+    })
+  }
+}
+
+export const deleteAlumnoByLegajo = async (req: Request, res: Response) => {
+  const legajo = obtenerParametro(req.params.legajo)
+
+  try {
+    const alumnos = await leerAlumnos()
+    const index = buscarIndexPorLegajo(alumnos, legajo)
+
+    if (index === -1) {
+      return res.status(404).json({
+        msg: `No se encontró el alumno con el legajo n° ${legajo}`
+      })
+    }
+
+    const alumnoEliminado = alumnos[index]
+    alumnos.splice(index, 1)
+
+    await escribirAlumnos(alumnos)
+
+    return res.status(200).json({
+      msg: `Se eliminó correctamente el alumno con el legajo n° ${alumnoEliminado.legajo}`,
+      alumno: alumnoEliminado
+    })
+  } catch (error) {
+    console.log(error)
+    return res.status(500).json({
+      error: 'No se pudo eliminar el alumno del sistema'
     })
   }
 }
