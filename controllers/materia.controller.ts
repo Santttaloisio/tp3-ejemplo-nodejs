@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import fs from 'fs/promises'
-import { MateriaModel } from '../../models/extras/materia.model'
+import { MateriaModel } from '../models/materia.model'
 
 type MateriaJson = {
   idMateria: string
@@ -8,7 +8,7 @@ type MateriaJson = {
   cuatrimestre: number
 }
 
-const materiasPath = './data/extras/sys-materias.json'
+const materiasPath = './data/materias.json'
 
 const leerMaterias = async (): Promise<MateriaJson[]> => {
   const data = await fs.readFile(materiasPath, 'utf8')

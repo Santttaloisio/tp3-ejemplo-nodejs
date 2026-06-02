@@ -173,5 +173,12 @@
     "idMateria": "SIST1",
     "nota": "a",
     "fecha": "01-06-26"
+  },
+  {
+    "id": 27,
+    "legajo": 10004,
+    "idMateria": "SIST2",
+    "nota": 10,
+    "fecha": "01-06-26"
   }
 ]

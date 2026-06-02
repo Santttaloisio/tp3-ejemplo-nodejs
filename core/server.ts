@@ -3,7 +3,7 @@ import 'dotenv/config'
 import express, { NextFunction, Request, Response } from 'express'
 import alumnoRoutes from '../routes/alumno.routes'
 import notasRoutes from '../routes/notas.routes'
-import materiaRoutes from '../routes/extras/materia.routes'
+import materiaRoutes from '../routes/materia.routes'
 
 export class Server {
   private app = express()
