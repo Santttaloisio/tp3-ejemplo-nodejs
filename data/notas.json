@@ -14,13 +14,6 @@
     "fecha": "01-07-24"
   },
   {
-    "id": 3,
-    "legajo": 10002,
-    "idMateria": "MAT101",
-    "nota": 10,
-    "fecha": "03-04-24"
-  },
-  {
     "id": 4,
     "legajo": 10002,
     "idMateria": "PROG1",
@@ -173,5 +166,12 @@
     "idMateria": "PROG1",
     "nota": 10,
     "fecha": "01-07-24"
+  },
+  {
+    "id": 26,
+    "legajo": 10023,
+    "idMateria": "SIST1",
+    "nota": "a",
+    "fecha": "01-06-26"
   }
 ]
