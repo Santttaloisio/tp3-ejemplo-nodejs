@@ -3,6 +3,7 @@ import 'dotenv/config'
 import express, { NextFunction, Request, Response } from 'express'
 import alumnoRoutes from '../routes/alumno.routes'
 import notasRoutes from '../routes/notas.routes'
+import materiaRoutes from '../routes/extras/materia.routes'
 
 export class Server {
   private app = express()
@@ -23,6 +24,11 @@ export class Server {
     this.app.use('/alumnos', alumnoRoutes)
     this.app.use('/notas', notasRoutes)
 
+    this.app.use('/materias', materiaRoutes)
+    /*
+    this.app.use('/notas', notaRoutes)
+    this.app.use('/profesores', profesorRoutes)
+    */
 
     // manejo de errores
     this.app.use((req: Request, res: Response) => {
