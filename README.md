@@ -24,6 +24,21 @@ Laureano Kronemberger (rama: alumno3_kronemberger)
 Santino Aloisio (rama: alumno4_aloisio)
 
 
+### Conrado Lanusse (rama: `alumno2_lanusse`)
+
+Implementación de la funcionalidad de **notas** en TypeScript. Se desarrollaron los controladores `getNotasAll`, `getNotaById`, `updateNota`, `createNota` y `deleteNota`, junto con sus rutas correspondientes en `notas.routes.ts`.
+
+Se agregaron los endpoints:
+
+- `GET /notas`
+- `GET /notas/:id`
+- `POST /notas`
+- `PUT /notas`
+- `DELETE /notas/:id`
+
+La ruta de `GET /notas` acepta parámetros de búsqueda para filtrar los resultados (idMateria y legajo).
+Las acciones de POST, PUT y DELETE se hacen persistentes al modificar la data en los archivos json de origen.
+
 ### Francisco Jaszczuk (rama: `alumno5_jaszczuk`)
 
 Implementación de la funcionalidad de **alumnos** en TypeScript. Se desarrollaron los controladores `getAlumnoAll`, `getAlumnoById` y `postNewAlumno`, junto con sus rutas correspondientes en `alumno.routes.ts`.

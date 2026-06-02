@@ -4,7 +4,6 @@
     "nombre": "Matemática I",
     "cuatrimestre": 1
   },
-
   {
     "idMateria": "PROG1",
     "nombre": "Programación I",
@@ -24,5 +23,10 @@
     "idMateria": "ING1",
     "nombre": "Inglés Técnico I",
     "cuatrimestre": 1
+  },
+  {
+    "idMateria": "SIST2",
+    "nombre": "Sistemas de Procesamiento de Datos 2",
+    "cuatrimestre": 2
   }
 ]

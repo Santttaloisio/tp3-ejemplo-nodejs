@@ -5,7 +5,7 @@ import {
   postNewMateria,
   putMateriaById,
   deleteMateriaById
-} from '../controllers/extras/materia.controller'
+} from '../controllers/materia.controller'
 
 const rutas = Router()
 
