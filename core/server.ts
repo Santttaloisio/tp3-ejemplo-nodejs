@@ -2,6 +2,7 @@ import cors from 'cors'
 import 'dotenv/config'
 import express, { NextFunction, Request, Response } from 'express'
 import alumnoRoutes from '../routes/alumno.routes'
+import materiaRoutes from '../routes/extras/materia.routes'
 
 export class Server {
   private app = express()
@@ -20,8 +21,8 @@ export class Server {
 
   private rutas(): void {
     this.app.use('/alumnos', alumnoRoutes)
-    /*
     this.app.use('/materias', materiaRoutes)
+    /*
     this.app.use('/notas', notaRoutes)
     this.app.use('/profesores', profesorRoutes)
     */
